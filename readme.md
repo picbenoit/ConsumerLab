@@ -1,27 +1,45 @@
-# Laravel PHP Framework
+# Installation de l'application
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+Guide d'installation de l'application
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+## Homestead
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+Suivre la documentation d'installation de la homestead sur le site [Laravel](https://laravel.com/docs/5.3/homestead).
 
-## Official Documentation
+Ajouter la ligne "mariadb: true" dans le fichier homestead.yaml.
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+Générer une clé ssh au besoin comme ceci :
+```
+ssh-keygen -t rsa -C "youremail@yourdomain".
+```
 
-## Contributing
+## Mise en place du projet
+Installation des dépendances avec composer
+```
+composer install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+Réaliser une copie de .env.example et le coller à la racine sous le nom de .env.
+Configurer ensuite le fichier pour qu'il fonctionne sur votre environnement.
 
-## Security Vulnerabilities
+## Mise en place de la base de données
+Ajouter les tables nécessaires au fonctionnement de l'application dans la base données
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+```
+php artisan migrate
+```
 
-## License
+Ajouter les données nécessaires (seeds) au fonctionnement de l'application
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+```
+php artisan db:seed
+```
+
+## Administion de l'application
+L'administrateur par défaut est "admin@consumerlab.com".
+Son password est "admin".
+L'administration est disponible à partir de l'url "/admin".
+
+Un administrateur peut créer/modifier/supprimer un questionnaire.
+Un questionnaire est composé de questions qui sont elles-même composées de choix de réponse.
+L'administrateur peut également consulter les statistiques de réponse.
